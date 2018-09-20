@@ -22,24 +22,27 @@ export class CategoriesSliderComponent {
     this.getCategories();
   }
 
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     this.getCategories();
   }
 
 
   public getCategories() {
     this.loadingProvider.present();
-    this.productsProvider.getCategories().subscribe(
-      response => {
-        this.responseData = response;
-        this.categories = this.responseData.data;
-        this.loadingProvider.dismiss();
-      },
-      err => {
-        console.error(err);
-        this.loadingProvider.dismiss();
-      }
-    );
+    this.productsProvider.getCategories()
+      .subscribe(
+        response => {
+          this.responseData = response;
+          this.categories = this.responseData.data;
+          this.loadingProvider.dismiss();
+        },
+        err => {
+          console.error(err);          
+          this.loadingProvider.dismiss();
+        }
+      )
+      
+      ;
     return event;
   }
 

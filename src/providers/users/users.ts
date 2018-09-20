@@ -167,6 +167,7 @@ export class UsersProvider {
     this.clear();
     try {
       window.localStorage.removeItem('userId');
+      window.location.reload();
     } catch (error) {
 
     }

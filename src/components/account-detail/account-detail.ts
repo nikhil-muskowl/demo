@@ -6,7 +6,7 @@ import { LoadingProvider } from '../../providers/loading/loading';
   templateUrl: 'account-detail.html'
 })
 export class AccountDetailComponent {
-
+  private id;
   private name;
   private email;
   private contact;
@@ -16,6 +16,7 @@ export class AccountDetailComponent {
     public usersProvider: UsersProvider,
     public loadingProvider: LoadingProvider
   ) {
+    this.id = this.usersProvider.id;
     this.fillData();
   }
 
