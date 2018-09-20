@@ -1,0 +1,50 @@
+<ion-header [scrollHide]="headerScrollConfig" [scrollContent]="pageContent">
+  <ion-navbar color="primary">
+    <button start ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{heading}}</ion-title>
+    <ion-buttons end>
+      
+      
+        <button ion-button icon-only>
+          <ion-icon name="notifications"></ion-icon>
+        </button>
+        <button ion-button icon-only>
+          <ion-icon name="cart"></ion-icon>
+        </button>
+    
+      <button ion-button icon-only (click)="regularShare()">
+        <ion-icon name="share"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar color="primary">
+    <ion-searchbar (click)="goToSearch()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #pageContent fullscreen>
+
+  <banners></banners>
+  <categories-slider></categories-slider>
+  <div padding>
+    <h3>Welcome to Lorem Ipsum</h3>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+      standard
+      dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+      specimen
+      book.
+    </p>
+    <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
+      unchanged.</p>
+    <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+      recently
+      with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+  </div>
+
+  
+
+</ion-content>

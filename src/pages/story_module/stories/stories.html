@@ -1,0 +1,36 @@
+<ion-header [scrollHide]="headerScrollConfig" [scrollContent]="pageContent">
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{heading}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content #pageContent fullscreen padding>
+
+  <div class="types-filter">
+    <ion-slides slidesPerView="4">
+      <ion-slide *ngFor="let type of types" (click)="typeChanged(type)">
+        <ion-segment [(ngModel)]="story_type_id" color="primary">
+          <ion-segment-button value="{{type.id}}">
+            {{type.title}}
+          </ion-segment-button>
+        </ion-segment>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemTapped(item)">
+      <ion-avatar item-start>
+        <img src="{{item.image_thumb}}">
+      </ion-avatar>
+      {{item.title}}
+    </button>
+  </ion-list>
+
+
+
+</ion-content>

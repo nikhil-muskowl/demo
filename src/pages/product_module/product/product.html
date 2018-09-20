@@ -1,0 +1,65 @@
+<ion-header [scrollHide]="headerScrollConfig" [scrollContent]="pageContent">
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{heading}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content #pageContent fullscreen padding>
+
+  <div *ngIf="id">
+
+    <ion-fab right edge>
+      <button color="light" ion-fab mini>
+        <ion-icon name="heart"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <img width="400" height="200" src="{{image}}">
+
+    <div class="image-slider">
+      <ion-slides slidesPerView="3">
+        <ion-slide class="image-slider-slide" *ngFor="let image of images;">
+          <img  src="{{image.image_thumb}}">
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <h2>{{title}}</h2>
+    <p>{{price}}</p>
+
+    <div padding>
+      <ion-segment [(ngModel)]="infoSegment">
+        <ion-segment-button value="description">
+          description
+        </ion-segment-button>
+        <ion-segment-button value="specification">
+          specification
+        </ion-segment-button>
+        <ion-segment-button value="more-info">
+          more info
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <div [ngSwitch]="infoSegment">
+      <div *ngSwitchCase="'description'">
+        <div [innerHTML]="html"></div>
+      </div>
+      <div *ngSwitchCase="'specification'">
+        <product-attributes [productid]="id"></product-attributes>
+      </div>
+      <div *ngSwitchCase="'more-info'">
+        <div [innerHTML]="description"></div>
+      </div>
+    </div>
+
+
+    <button ion-button>Add to cart &nbsp;<ion-icon name="cart"></ion-icon></button>
+    <button ion-button (click)="goToInquiry()">Send inquiry &nbsp;<ion-icon name="send"></ion-icon></button>
+  </div>
+
+</ion-content>

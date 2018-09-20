@@ -1,0 +1,12 @@
+<div class="banner">
+  <ion-slides pager>
+    <div *ngFor="let item of items">
+      <ion-slide class="banner-slide" [ngStyle]="{'background-image' : 'url('+item.image+')'}">
+        <div class="layer">
+          <h2 class="title">{{item.title}}</h2>
+          <!-- <p>{{item.description}}</p> -->
+        </div>
+      </ion-slide>
+    </div>
+  </ion-slides>
+</div>

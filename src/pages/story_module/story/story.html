@@ -1,0 +1,82 @@
+<ion-header [scrollHide]="headerScrollConfig" [scrollContent]="pageContent">
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{heading}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content #pageContent fullscreen padding>
+
+  <ion-card>
+    <ion-item>
+      <h2>{{title}}</h2>
+    </ion-item>
+
+    <div swipeAll (swipeup)="swipeUp($event)" (swipedown)="swipeDown($event)" >
+      <img src="{{image}}" height="200">
+    </div>
+
+
+    <ion-card-content>
+      <p>{{description}}</p>
+      <span *ngFor="let tags of tags">
+        <ion-badge color="danger">{{tags}}</ion-badge>
+        &nbsp;
+      </span>
+
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start clear small (click)="rankStory(1)">
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div >{{totalLikes}}</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear small (click)="rankStory(0)">
+          <ion-icon name="thumbs-down"></ion-icon>
+          <div>{{totalDislikes}}</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          {{date}}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+  <ion-list>
+    <ion-item *ngFor="let comment of comments">
+      <ion-avatar item-start>
+        <img src="{{comment.user_image_thumb}}">
+      </ion-avatar>
+      <h2>{{comment.user_name}}</h2>
+      <p>{{comment.comment}}</p>
+      <ion-note item-end>{{comment.date}}</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-list no-lines>
+
+    <form [formGroup]="commentForm">
+
+      <ion-item>
+        <ion-label floating>Commment</ion-label>
+        <ion-textarea formControlName="comment" type="text" [class.valid]="!formErrors.comment" [class.invalid]="formErrors.comment"></ion-textarea>
+      </ion-item>
+      <ion-item *ngIf="formErrors.comment">
+        <p class="invalid-text">{{formErrors.comment}}</p>
+      </ion-item>
+
+    </form>
+    <button ion-button full color="danger" (click)="commentStory()">Comment</button>
+  </ion-list>
+
+
+</ion-content>

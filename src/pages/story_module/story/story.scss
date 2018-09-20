@@ -1,0 +1,114 @@
+page-story {
+     
+        .bubbles {
+              opacity:0;
+              position: absolute;
+              background-color:rgba(33,150,243,0.5);
+              animation: bubbles 3s ease-in infinite;
+              border-radius:100%;
+           
+        }
+
+        .hearts {
+              opacity:0;
+              position: absolute;
+              background-color:rgba(204,42,93,1);
+              animation: hearts 3s ease-in infinite;
+              &:before, &:after {
+                 position: absolute;
+                 content: '';
+                 border-radius:100px;
+                 top:0px;
+                 left:0px;
+                 width:100%;
+                 height:100%;
+                 background-color:rgba(204,42,93,1);
+              }
+              &:before {
+                 transform:translateX(-50%);
+              }
+              &:after {
+                 transform:translateY(-50%);
+              }
+           
+        }
+       
+        .fire {
+              position: absolute;
+              background-color:rgba(255,193,7,0.5);
+              border-radius:40px;
+              border-top-right-radius:0px;
+              animation: fires 0.8s linear infinite;
+                 transform:rotate(-45deg);
+              opacity:0;
+              &:before {
+                 position: absolute;
+                 content: '';
+                 top:60%;
+                 left:40%;
+                 transform:translate(-50%,-50%);
+                 width:50%;
+                 height:50%;
+                 border-radius:40px;
+                 border-top-right-radius:0px;
+                 background-color:rgba(251,140,0,0.5);
+              }
+           
+        }
+        
+     
+
+   @keyframes bubbles {
+      0% {
+         opacity: 0;
+      }
+      20% { //show and hint at moving
+         opacity: 1;
+         transform:translate(0, -20%);
+      }
+      100% {
+         opacity: 0;
+         transform:translate(0, -1000%); //Big bubbles move faster
+      }
+   }
+
+   @keyframes hearts {
+      0% {
+         opacity: 0;
+         transform:translate(0, 0%) rotate(45deg);
+      }
+      20% { //show and hint at moving
+         opacity: 0.8;
+         transform:translate(0, -20%) rotate(45deg);
+      }
+      100% {
+         opacity: 0;
+         transform:translate(0, -1000%) rotate(45deg); //Big hearts move faster
+      }
+   }
+
+
+   @keyframes fires {
+      0% {
+         transform: rotate(-70deg) translateY(0%);
+      }
+      25% {
+         transform: rotate(-20deg) translateY(-5%);
+         opacity:1;
+      }
+      50%{
+         transform: rotate(-70deg) translateY(-10%);
+      }
+      75% {
+         transform: rotate(-20deg) translateY(-20%);
+      }
+      100% {
+         transform: rotate(-70deg) translateY(-40%);
+         opacity:1;
+      }
+   }
+
+
+   
+
+  }

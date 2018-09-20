@@ -1,0 +1,17 @@
+<ion-grid>
+  <ion-row *ngFor="let group of attributes">
+    <ion-col col-12 class="attribute-group">
+      <h2 class="title">{{group.attribute_group}}</h2>
+
+      <ion-row *ngFor="let attribute of group.attributes" class="attribute-detail">
+        <ion-col col-6 class="title">
+          {{attribute.attribute}}
+        </ion-col>
+        <ion-col col-6 class="text">
+          {{attribute.text}}
+        </ion-col>
+      </ion-row>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>

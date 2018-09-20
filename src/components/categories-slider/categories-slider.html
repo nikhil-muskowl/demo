@@ -1,0 +1,10 @@
+<div class="categories-filter">
+  <ion-slides slidesPerView="4">
+    <ion-slide *ngFor="let category of categories" (click)="goToProducts(category)">      
+        <div text-center>
+            <img src="{{category.image_thumb}}">
+        </div>          
+        {{category.title}}
+    </ion-slide>
+  </ion-slides>
+</div>

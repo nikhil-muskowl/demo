@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{heading}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #pageContent fullscreen padding>
+
+  
+
+  <ion-card>
+    <ion-card-header>
+      Nadim Sheikh
+    </ion-card-header>
+
+    <ion-list>
+      <button ion-item>
+        <ion-icon name="call" item-start></ion-icon>
+        7737033665
+      </button>
+      <button ion-item>
+        <ion-icon name="mail" item-start></ion-icon>
+        nadim.sheikh.07@gmail.com
+      </button>
+
+    </ion-list>
+  </ion-card>
+
+  <div #map id="map"></div>
+  
+  <ion-card>
+    <ion-card-header>
+      Send Query
+    </ion-card-header>
+
+    <ion-list no-lines>
+
+      <form [formGroup]="contactForm">
+
+        <ion-item>
+          <ion-label>Contact For</ion-label>
+          <ion-select formControlName="types" multiple="true" cancelText="Cancel" okText="Okay!">
+            <ion-option *ngFor="let type of types" value="{{type.id}}">{{type.title}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="formErrors.types">
+          <p class="invalid-text">{{formErrors.types}}</p>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input formControlName="name" type="text" [class.valid]="!formErrors.name" [class.invalid]="formErrors.name"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="formErrors.name">
+          <p class="invalid-text">{{formErrors.name}}</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input formControlName="email" type="text" [class.valid]="!formErrors.email" [class.invalid]="formErrors.email"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="formErrors.email">
+          <p class="invalid-text">{{formErrors.email}}</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Contact</ion-label>
+          <ion-input formControlName="contact" type="text" [class.valid]="!formErrors.contact" [class.invalid]="formErrors.contact"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="formErrors.contact">
+          <p class="invalid-text">{{formErrors.contact}}</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Inquiry</ion-label>
+          <ion-input formControlName="inquiry" type="text" [class.valid]="!formErrors.inquiry" [class.invalid]="formErrors.inquiry"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="formErrors.inquiry">
+          <p class="invalid-text">{{formErrors.inquiry}}</p>
+        </ion-item>
+
+      </form>
+      <button ion-button full color="primary" (click)="save()">Send!</button>
+    </ion-list>
+  </ion-card>
+
+
+</ion-content>

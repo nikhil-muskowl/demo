@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{heading}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #pageContent fullscreen padding>
+
+  <account-detail></account-detail>
+
+  <ion-list>
+
+    <ion-item>
+      <button ion-button full color="primary" (click)="logout()">Logout</button>
+    </ion-item>
+    <ion-item>
+      <button ion-button full color="primary" (click)="goToUpdateProfile()">Update Profile</button>
+    </ion-item>
+    <ion-item>
+      <button ion-button full color="primary" (click)="goToUpdatePassword()">Update Password</button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
