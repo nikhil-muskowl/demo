@@ -10,10 +10,13 @@ import { HomePage } from '../pages/public_module/home/home';
 import { AboutPage } from '../pages/public_module/about/about';
 import { ContactPage } from '../pages/public_module/contact/contact';
 import { AccountPage } from '../pages/user_module/account/account';
+import { NotificationsPage } from '../pages/notification_module/notifications/notifications';
 import { StoriesPage } from '../pages/story_module/stories/stories';
 import { ProductsPage } from '../pages/product_module/products/products';
 import { ProductCategoriesPage } from '../pages/product_module/product-categories/product-categories';
 import { LoadingProvider } from '../providers/loading/loading';
+
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -40,15 +43,16 @@ export class MyApp {
     this.currentLocationProvider.setLocation();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'My Account', component: AccountPage },
-      { title: 'About', component: AboutPage },
-      { title: 'Contact', component: ContactPage },
-      { title: 'Stories', component: StoriesPage },
-      { title: 'Categories', component: ProductCategoriesPage },
-      { title: 'Products', component: ProductsPage },
-    ];
+    this.pages = [];
+
+    this.pages.push({ title: 'Home', component: HomePage });
+    this.pages.push({ title: 'My Account', component: AccountPage });
+    this.pages.push({ title: 'Notifications', component: NotificationsPage });
+    this.pages.push({ title: 'Categories', component: ProductCategoriesPage });
+    this.pages.push({ title: 'Products', component: ProductsPage });
+    this.pages.push({ title: 'About', component: AboutPage });
+    this.pages.push({ title: 'Contact', component: ContactPage });
+    this.pages.push({ title: 'Contact', component: StoriesPage });
   }
 
 

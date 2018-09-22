@@ -16,6 +16,11 @@ import { ContactPage } from '../pages/public_module/contact/contact';
 import { StoriesPage } from '../pages/story_module/stories/stories';
 import { StoryPage } from '../pages/story_module/story/story';
 
+// notification_module
+import { NotificationsPage } from '../pages/notification_module/notifications/notifications';
+import { NotificationPage } from '../pages/notification_module/notification/notification';
+
+
 // product_module
 import { ProductsPage } from '../pages/product_module/products/products';
 import { ProductPage } from '../pages/product_module/product/product';
@@ -71,6 +76,11 @@ import { NotificationsProvider } from '../providers/notifications/notifications'
     StoryPage,
     // story_module
 
+    // notification_module
+    NotificationsPage,
+    NotificationPage,
+    // notification_module
+
     // product_module
     ProductsPage,
     ProductPage,
@@ -118,6 +128,11 @@ import { NotificationsProvider } from '../providers/notifications/notifications'
     StoriesPage,
     StoryPage,
     // story_module
+
+    // notification_module
+    NotificationsPage,
+    NotificationPage,
+    // notification_module
 
     // product_module
     ProductsPage,
