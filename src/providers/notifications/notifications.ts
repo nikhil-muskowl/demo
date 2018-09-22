@@ -19,9 +19,7 @@ export class NotificationsProvider {
     this.formData = new FormData();
     this.URL = ConfigProvider.BASE_URL + 'notifications_module/api/user_notifications_api';
     this.formData.append('language_id', '1');
-    if (data.story_type_id) {
-      this.formData.append('user_id', this.usersProvider.id);
-    }
+    this.formData.append('user_id', this.usersProvider.id);
 
     return this.http.post(this.URL,
       this.formData,
@@ -34,8 +32,7 @@ export class NotificationsProvider {
   detail(id: any) {
     this.formData = new FormData();
     this.URL = ConfigProvider.BASE_URL + 'notifications_module/api/user_notifications_api/detail/' + id;
-    return this.http.post(this.URL,
-      this.formData,
+    return this.http.get(this.URL,     
       {
         headers: this.headers,
       }

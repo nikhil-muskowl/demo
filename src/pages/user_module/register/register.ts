@@ -39,11 +39,11 @@ export class RegisterPage {
     private loadingProvider: LoadingProvider,
     private alertCtrl: AlertController
   ) {
-    this.name = 'admin';
-    this.email = 'admin@gmail.com';
-    this.contact = '1234567890';
-    this.password = '123456';
-    this.passconf = '123456';
+    this.name = '';
+    this.email = '';
+    this.contact = '';
+    this.password = '';
+    this.passconf = '';
     this.createForm();
   }
 

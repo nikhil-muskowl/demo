@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { ScrollHideConfig } from '../../../directives/scroll-hide/scroll-hide';
 import { SocialSharingProvider } from '../../../providers/social-sharing/social-sharing';
 import { SearchProductsPage } from '../../product_module/search-products/search-products';
+import { NotificationsPage } from '../../notification_module/notifications/notifications';
 
 @Component({
   selector: 'page-home',
@@ -70,6 +71,11 @@ export class HomePage {
     this.socialSharing.image = null;
     this.socialSharing.url = this.url;
     this.socialSharing.shareVia();
+  }
+
+
+  openNotifications(){
+    this.navCtrl.setRoot(NotificationsPage);
   }
 
 }

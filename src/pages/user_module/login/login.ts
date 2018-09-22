@@ -41,8 +41,8 @@ export class LoginPage {
     private usersProvider: UsersProvider,
     private loadingProvider: LoadingProvider,
     private alertCtrl: AlertController) {
-    this.username = 'admin@gmail.com';
-    this.password = '123456';
+    this.username = '';
+    this.password = '';
 
     this.createForm();
   }

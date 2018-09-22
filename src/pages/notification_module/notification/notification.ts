@@ -40,10 +40,11 @@ export class NotificationPage {
     this.notificationsProvider.detail(this.id).subscribe(
       response => {
         this.responseData = response;
-        this.title = this.responseData.result[0].title;
-        this.heading = this.responseData.result[0].title;
-        this.description = this.responseData.result[0].description;
-        this.image = this.responseData.result[0].image;
+        
+        this.title = this.responseData.result.title;
+        this.heading = this.responseData.result.title;
+        this.description = this.responseData.result.description;
+        this.image = this.responseData.result.image_thumb;
         this.loadingProvider.dismiss();
       },
       err => {

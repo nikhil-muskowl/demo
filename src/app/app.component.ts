@@ -9,8 +9,11 @@ import { CurrentLocationProvider } from '../providers/current-location/current-l
 import { HomePage } from '../pages/public_module/home/home';
 import { AboutPage } from '../pages/public_module/about/about';
 import { ContactPage } from '../pages/public_module/contact/contact';
+
 import { AccountPage } from '../pages/user_module/account/account';
+import { LoginPage } from '../pages/user_module/login/login';
 import { NotificationsPage } from '../pages/notification_module/notifications/notifications';
+
 import { StoriesPage } from '../pages/story_module/stories/stories';
 import { ProductsPage } from '../pages/product_module/products/products';
 import { ProductCategoriesPage } from '../pages/product_module/product-categories/product-categories';
@@ -38,24 +41,20 @@ export class MyApp {
     public loadingProvider: LoadingProvider
   ) {
     this.initializeApp();
-
     this.usersProvider.fillData();
     this.currentLocationProvider.setLocation();
-
-    // used for an example of ngFor and navigation
-    this.pages = [];
-
-    this.pages.push({ title: 'Home', component: HomePage });
-    this.pages.push({ title: 'My Account', component: AccountPage });
-    this.pages.push({ title: 'Notifications', component: NotificationsPage });
-    this.pages.push({ title: 'Categories', component: ProductCategoriesPage });
-    this.pages.push({ title: 'Products', component: ProductsPage });
-    this.pages.push({ title: 'About', component: AboutPage });
-    this.pages.push({ title: 'Contact', component: ContactPage });
-    this.pages.push({ title: 'Contact', component: StoriesPage });
+    this.bindMenu();
   }
 
+  menuClosed() {
+    this.usersProvider.fillData();
+    this.bindMenu();
+  }
 
+  menuOpened() {
+    this.usersProvider.fillData();
+    this.bindMenu();
+  }
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -64,6 +63,25 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  bindMenu() {
+    // used for an example of ngFor and navigation
+    this.pages = [];
+
+    this.pages.push({ title: 'Home', component: HomePage });
+    if (this.usersProvider.id) {
+      this.pages.push({ title: 'My Account', component: AccountPage });
+      this.pages.push({ title: 'Notifications', component: NotificationsPage });
+    } else {
+      this.pages.push({ title: 'Login', component: LoginPage });
+    }
+
+    this.pages.push({ title: 'Categories', component: ProductCategoriesPage });
+    this.pages.push({ title: 'Products', component: ProductsPage });
+    this.pages.push({ title: 'About', component: AboutPage });
+    this.pages.push({ title: 'Contact', component: ContactPage });
+    this.pages.push({ title: 'Stories', component: StoriesPage });
   }
 
   openPage(page) {

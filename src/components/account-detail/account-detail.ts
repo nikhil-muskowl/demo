@@ -28,6 +28,10 @@ export class AccountDetailComponent {
     this.fillData();
   }
 
+  ngOnChanges() {
+    this.fillData();
+  }
+
   public fillData() {
     if (this.usersProvider.id) {
       this.loadingProvider.present();
