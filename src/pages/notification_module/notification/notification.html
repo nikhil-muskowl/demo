@@ -1,0 +1,22 @@
+<ion-header [scrollHide]="headerScrollConfig" [scrollContent]="pageContent">
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{heading}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content #pageContent fullscreen padding>
+
+  <div *ngIf="id">
+
+    <img width="400" height="200" src="{{image}}">
+
+    <h2>{{title}}</h2>
+    <div [innerHTML]="description"></div>
+
+  </div>
+
+</ion-content>

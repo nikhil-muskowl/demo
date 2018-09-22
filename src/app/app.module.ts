@@ -54,6 +54,7 @@ import { InquiriesProvider } from '../providers/inquiries/inquiries';
 import { StoriesProvider } from '../providers/stories/stories';
 import { CurrentLocationProvider } from '../providers/current-location/current-location';
 import { ProductInquiriesProvider } from '../providers/product-inquiries/product-inquiries';
+import { NotificationsProvider } from '../providers/notifications/notifications';
 
 @NgModule({
   declarations: [
@@ -155,7 +156,8 @@ import { ProductInquiriesProvider } from '../providers/product-inquiries/product
     InquiriesProvider,
     StoriesProvider,
     CurrentLocationProvider,
-    ProductInquiriesProvider
+    ProductInquiriesProvider,
+    NotificationsProvider
   ]
 })
 export class AppModule { }
