@@ -13,15 +13,21 @@
 
   <ion-list>
 
-    <ion-item>
-      <button ion-button full color="primary" (click)="logout()">Logout</button>
+    <ion-item (click)="goToWishlist()">
+      Wishlist
+    </ion-item>    
+    <ion-item (click)="goToNotifications()">
+      Notifications
+    </ion-item>    
+    <ion-item (click)="goToUpdateProfile()">
+      Update Profile
     </ion-item>
-    <ion-item>
-      <button ion-button full color="primary" (click)="goToUpdateProfile()">Update Profile</button>
+    <ion-item (click)="goToUpdatePassword()">
+      Update Password
     </ion-item>
-    <ion-item>
-      <button ion-button full color="primary" (click)="goToUpdatePassword()">Update Password</button>
-    </ion-item>
+    <ion-item (click)="logout()">
+        Logout
+      </ion-item>
   </ion-list>
 
 </ion-content>

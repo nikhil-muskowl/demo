@@ -6,6 +6,8 @@ import { LoginPage } from '../login/login';
 import { UpdateProfilePage } from '../update-profile/update-profile';
 import { UpdatePasswordPage } from '../update-password/update-password';
 import { HomePage } from '../../public_module/home/home';
+import { NotificationsPage } from '../../notification_module/notifications/notifications';
+import { WishlistPage } from '../wishlist/wishlist';
 
 import { UsersProvider } from '../../../providers/users/users';
 import { ScrollHideConfig } from '../../../directives/scroll-hide/scroll-hide';
@@ -48,8 +50,6 @@ export class AccountPage {
     }
   }
 
-
-
   public fillData() {
     this.loadingProvider.present();
     this.usersProvider.getDetails(this.usersProvider.id).subscribe(response => {
@@ -78,9 +78,19 @@ export class AccountPage {
   public goToLogin() {
     this.navCtrl.setRoot(LoginPage);
   }
+
+  public goToWishlist() {
+    this.navCtrl.setRoot(WishlistPage);
+  }
+
+  public goToNotifications() {
+    this.navCtrl.setRoot(NotificationsPage);
+  }
+
   public goToUpdateProfile() {
     this.navCtrl.setRoot(UpdateProfilePage);
   }
+  
   public goToUpdatePassword() {
     this.navCtrl.setRoot(UpdatePasswordPage);
   }
