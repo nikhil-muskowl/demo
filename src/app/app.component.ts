@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, App, Alert } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -19,13 +19,15 @@ import { StoriesPage } from '../pages/story_module/stories/stories';
 import { ProductsPage } from '../pages/product_module/products/products';
 import { ProductCategoriesPage } from '../pages/product_module/product-categories/product-categories';
 import { LoadingProvider } from '../providers/loading/loading';
-
+import { AlertController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
+
+  private alert: Alert;
 
   rootPage: any = HomePage;
 
@@ -34,14 +36,17 @@ export class MyApp {
   private responseData;
 
   constructor(
+    private app: App,
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public usersProvider: UsersProvider,
     public currentLocationProvider: CurrentLocationProvider,
-    public loadingProvider: LoadingProvider
+    public loadingProvider: LoadingProvider,
+    private alertCtrl: AlertController,
   ) {
     this.initializeApp();
+    this.backEvent();
     this.usersProvider.fillData();
     this.currentLocationProvider.setLocation();
     this.bindMenu();
@@ -90,6 +95,53 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  backEvent() {
+    this.platform.registerBackButtonAction(() => {
+      const overlayView = this.app._appRoot._overlayPortal._views[0];
+      if (overlayView && overlayView.dismiss) {
+        overlayView.dismiss();
+        return;
+      }
+      if (this.nav.canGoBack()) {
+        this.nav.pop();
+      }
+      else {
+        let view = this.nav.getActive();
+        if (view.component == HomePage || view.component == LoginPage) {
+          if (this.alert) {
+            this.alert.dismiss();
+            this.alert = null;
+          } else {
+            this.showAlert();
+          }
+        }
+      }
+    });
+  }
+
+  showAlert() {
+    this.alert = this.alertCtrl.create({
+      title: 'Exit?',
+      message: 'Do you want to exit the app?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            this.alert = null;
+          }
+        },
+        {
+          text: 'Exit',
+          handler: () => {
+            this.platform.exitApp();
+          }
+        }
+      ]
+    });
+    this.alert.present();
   }
 
 }
