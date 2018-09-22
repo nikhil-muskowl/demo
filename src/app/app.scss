@@ -48,3 +48,34 @@ ion-loading.my-loading-fire {
       margin-right: 200px;
     }
   }
+
+
+.accordion-list {
+    // background: color($colors, light);
+    height: 100%;
+
+    .list-header-md {        
+        margin-bottom: 5px !important;         
+    }
+}
+.section {
+    background: #fff;    
+}
+.section-active {
+    background: color($colors, primary);
+    color: #fff;
+}
+
+.child {    
+    margin-left: 15px;      
+}
+.child-item {    
+    padding: 0px;
+    margin-left: 10px;
+}
+.label {
+    margin: 0px;
+}
+.list {
+    margin-bottom: 0px;
+}

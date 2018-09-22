@@ -11,6 +11,7 @@ import { AboutPage } from '../pages/public_module/about/about';
 import { ContactPage } from '../pages/public_module/contact/contact';
 
 import { AccountPage } from '../pages/user_module/account/account';
+import { RegisterPage } from '../pages/user_module/register/register';
 import { LoginPage } from '../pages/user_module/login/login';
 import { NotificationsPage } from '../pages/notification_module/notifications/notifications';
 import { WishlistPage } from '../pages/user_module/wishlist/wishlist';
@@ -31,7 +32,8 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{ title: string, component: any }>;
+  private pages: Array<{ title: string, component: any, open: any, children: any }>;
+  private children: Array<{ title: string, component: any, open: any, children: any }>;
 
   private responseData;
 
@@ -74,21 +76,39 @@ export class MyApp {
   bindMenu() {
     // used for an example of ngFor and navigation
     this.pages = [];
+    this.children = [];
 
-    this.pages.push({ title: 'Home', component: HomePage });
+    this.pages.push({ title: 'Home', component: HomePage, open: false, children: this.children });
+
+    this.children = [];
     if (this.usersProvider.id) {
-      this.pages.push({ title: 'My Account', component: AccountPage });
-      this.pages.push({ title: 'Notifications', component: NotificationsPage });
-      this.pages.push({ title: 'Wishlist', component: WishlistPage });
+      this.children.push({ title: 'Account', component: AccountPage, open: false, children: [] });
+      this.children.push({ title: 'Notifications', component: NotificationsPage, open: false, children: [] });
+      this.children.push({ title: 'Wishlist', component: WishlistPage, open: false, children: [] });
     } else {
-      this.pages.push({ title: 'Login', component: LoginPage });
+      this.children.push({ title: 'Login', component: LoginPage, open: false, children: [] });
+      this.children.push({ title: 'Register', component: RegisterPage, open: false, children: [] });
     }
+    this.pages.push({ title: 'My Account', component: AccountPage, open: false, children: this.children });
 
-    this.pages.push({ title: 'Categories', component: ProductCategoriesPage });
-    this.pages.push({ title: 'Products', component: ProductsPage });
-    this.pages.push({ title: 'About', component: AboutPage });
-    this.pages.push({ title: 'Contact', component: ContactPage });
-    this.pages.push({ title: 'Stories', component: StoriesPage });
+    this.children = [];
+
+    this.pages.push({ title: 'Categories', component: ProductCategoriesPage, open: false, children: this.children });
+    this.pages.push({ title: 'Products', component: ProductsPage, open: false, children: this.children });
+    this.pages.push({ title: 'About', component: AboutPage, open: false, children: this.children });
+    this.pages.push({ title: 'Contact', component: ContactPage, open: false, children: this.children });
+    this.pages.push({ title: 'Stories', component: StoriesPage, open: false, children: this.children });
+
+
+    console.log(this.pages);
+  }
+
+  toggleSection(i) {
+    this.pages[i].open = !this.pages[i].open;
+  }
+
+  toggleItem(i, j) {
+    this.pages[i].children[j].open = !this.pages[i].children[j].open;
   }
 
   openPage(page) {
