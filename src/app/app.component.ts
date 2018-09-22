@@ -13,6 +13,7 @@ import { ContactPage } from '../pages/public_module/contact/contact';
 import { AccountPage } from '../pages/user_module/account/account';
 import { LoginPage } from '../pages/user_module/login/login';
 import { NotificationsPage } from '../pages/notification_module/notifications/notifications';
+import { WishlistPage } from '../pages/user_module/wishlist/wishlist';
 
 import { StoriesPage } from '../pages/story_module/stories/stories';
 import { ProductsPage } from '../pages/product_module/products/products';
@@ -73,6 +74,7 @@ export class MyApp {
     if (this.usersProvider.id) {
       this.pages.push({ title: 'My Account', component: AccountPage });
       this.pages.push({ title: 'Notifications', component: NotificationsPage });
+      this.pages.push({ title: 'Wishlist', component: WishlistPage });
     } else {
       this.pages.push({ title: 'Login', component: LoginPage });
     }

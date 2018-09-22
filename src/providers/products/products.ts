@@ -1,6 +1,7 @@
 import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConfigProvider } from '../config/config';
+import { UsersProvider } from '../users/users';
 
 @Injectable()
 export class ProductsProvider {
@@ -10,7 +11,10 @@ export class ProductsProvider {
   public responseData: any;
   private URL;
 
-  constructor(public http: HttpClient) {
+  constructor(
+    public http: HttpClient,
+    public usersProvider: UsersProvider,
+  ) {
     this.headers.set('Access-Control-Allow-Origin ', '*');
     this.headers.set('Content-Type', 'application/json; charset=utf-8');
   }
@@ -65,5 +69,33 @@ export class ProductsProvider {
       }
     );
   }
+
+
+  setWishlist(id) {
+    this.URL = ConfigProvider.BASE_URL + 'product_module/api/product_wishlists_api/save';
+    this.formData.append('language_id', '1');
+    this.formData.append('user_id', this.usersProvider.id);
+    this.formData.append('product_id', id);
+    return this.http.post(this.URL,
+      this.formData,
+      {
+        headers: this.headers,
+      }
+    );
+  }
+
+  getWishlist() {
+    this.URL = ConfigProvider.BASE_URL + 'product_module/api/product_wishlists_api';
+    this.formData.append('language_id', '1');
+    this.formData.append('user_id', this.usersProvider.id);
+    return this.http.post(this.URL,
+      this.formData,
+      {
+        headers: this.headers,
+      }
+    );
+  }
+
+
 
 }

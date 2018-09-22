@@ -40,6 +40,7 @@ import { RegisterPage } from '../pages/user_module/register/register';
 import { LoginPage } from '../pages/user_module/login/login';
 import { UpdatePasswordPage } from '../pages/user_module/update-password/update-password';
 import { UpdateProfilePage } from '../pages/user_module/update-profile/update-profile';
+import { WishlistPage } from '../pages/user_module/wishlist/wishlist';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -95,6 +96,7 @@ import { NotificationsProvider } from '../providers/notifications/notifications'
     LoginPage,
     UpdatePasswordPage,
     UpdateProfilePage,
+    WishlistPage,
     // user_module
 
     ScrollHideDirective,
@@ -148,7 +150,9 @@ import { NotificationsProvider } from '../providers/notifications/notifications'
     LoginPage,
     UpdatePasswordPage,
     UpdateProfilePage,
+    WishlistPage,
     // user_module
+
     //components
     AccountDetailComponent,
     BannersComponent,

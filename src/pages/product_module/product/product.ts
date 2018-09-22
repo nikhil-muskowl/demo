@@ -4,7 +4,8 @@ import { ProductsProvider } from '../../../providers/products/products';
 import { ScrollHideConfig } from '../../../directives/scroll-hide/scroll-hide';
 import { LoadingProvider } from '../../../providers/loading/loading';
 import { ProductInquiriesPage } from '../product-inquiries/product-inquiries';
-
+import { AlertController } from 'ionic-angular';
+import { WishlistPage } from '../../user_module/wishlist/wishlist';
 
 @IonicPage()
 @Component({
@@ -25,14 +26,17 @@ export class ProductPage {
   private price;
   private images;
 
-
+  private status;
+  private messageTitle;
+  private message;
   private infoSegment = 'description';
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public productsProvider: ProductsProvider,
-    public loadingProvider: LoadingProvider
+    public loadingProvider: LoadingProvider,
+    private alertCtrl: AlertController,
   ) {
     this.id = this.navParams.get('id');
     this.getDetail();
@@ -61,6 +65,67 @@ export class ProductPage {
     return event;
   }
 
+  /**
+   * setWishlist
+   */
+  public setWishlist() {
+    this.loadingProvider.present();
+    this.productsProvider.setWishlist(this.id).subscribe(
+      response => {
+        this.responseData = response;
+        this.status = this.responseData.status;
+        this.message = this.responseData.message;
+
+
+        if (this.status) {
+          this.messageTitle = 'Sucess!';
+        } else {
+          this.messageTitle = 'Warning!';
+
+          if (this.responseData.result) {
+            this.responseData.result.forEach(element => {
+
+              if (element.id == 'user_id') {
+                this.message = element.text
+              }
+              if (element.id == 'product_id') {
+                this.message = element.text
+              }
+
+            });
+          }
+        }
+
+        this.loadingProvider.dismiss();
+
+        let alert = this.alertCtrl.create({
+          title: this.messageTitle,
+          message: this.message,
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              handler: () => {
+
+              }
+            },
+            {
+              text: 'Go to Wishlist',
+              handler: () => {
+                this.navCtrl.setRoot(WishlistPage);
+              }
+            }
+          ]
+        });
+        alert.present();
+      },
+      err => {
+        console.error(err);
+        this.loadingProvider.dismiss();
+      }
+    );
+    return event;
+  }
 
   /**
    * goToInquiry
