@@ -9,12 +9,81 @@
 
 
 <ion-content #pageContent fullscreen padding>
-  <ion-list>
-    <ion-item *ngFor="let category of categories" (click)="itemTapped(category)">
+
+  <!-- <ion-list *ngFor="let category of categories">
+
+    <ion-list-header text-wrap>
       <ion-avatar item-start>
         <img src="{{category.image}}">
       </ion-avatar>
-      <h2>{{category.title}}</h2>      
+      <h1 [innerHTML]="category.title" (click)="itemTapped(category)" item-start></h1>
+    </ion-list-header>
+
+    <ion-item *ngFor="let children of category.childrens" (click)="itemTapped(children)">
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <ion-avatar item-start>
+        <img src="{{children.image}}">
+      </ion-avatar>
+      <h2 [innerHTML]="children.title"></h2>
     </ion-item>
+
+  </ion-list> -->
+
+
+  <ion-list class="accordion-list">
+
+    <!-- First Level -->
+    <ion-list-header *ngFor="let item of categories; let i = index" no-lines>
+
+      <div *ngIf="item.childrens?.length > 0">
+        <!-- Toggle Button -->
+        <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
+          <ion-icon item-right name="ios-arrow-forward" *ngIf="!item.open"></ion-icon>
+          <ion-icon item-right name="ios-arrow-down" *ngIf="item.open"></ion-icon>
+          {{ item.title }}
+        </button>
+
+        <ion-list *ngIf="item.childrens && item.open" no-lines>
+
+          <!-- Second Level -->
+          <ion-list-header *ngFor="let child of item.childrens; let j = index" no-padding>
+
+            <!-- Toggle Button -->
+            <button ion-item (click)="toggleItem(i, j)" *ngIf="child.childrens" class="child" detail-none>
+              <ion-icon item-right name="add" *ngIf="!child.open"></ion-icon>
+              <ion-icon item-right name="close" *ngIf="child.open"></ion-icon>
+              {{ child.title }}
+            </button>
+
+
+            <!-- Direct Add Button as Fallback -->
+            <ion-item *ngIf="!child.childrens" ion-item detail-none class="child-item" text-wrap>
+              <h2>{{ child.title }}</h2>
+            </ion-item>
+
+
+            <ion-list *ngIf="child.childrens && child.open">
+              <!-- Third Level -->
+              <ion-item *ngFor="let item of child.childrens; let k = index" detail-none class="child-item" text-wrap>
+                <h2>{{ item.title }}</h2>
+              </ion-item>
+
+            </ion-list>
+
+          </ion-list-header>
+        </ion-list>
+
+      </div>
+
+      <div *ngIf="item.childrens?.length ==0">
+        <button menuClose ion-item (click)="itemTapped(item)">
+          {{ item.title }}
+        </button>
+      </div>
+    </ion-list-header>
+
   </ion-list>
+
 </ion-content>

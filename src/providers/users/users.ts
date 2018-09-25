@@ -32,7 +32,8 @@ export class UsersProvider {
     this.headers.set('Access-Control-Allow-Origin ', '*');
     this.headers.set('Content-Type', 'application/json; charset=utf-8');
     this.id = this.isLogin();
-    if (this.id) {
+
+    if (this.id != 0) {
       this.fillData();
     }
   }

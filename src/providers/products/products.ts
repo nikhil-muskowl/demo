@@ -1,7 +1,8 @@
-import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConfigProvider } from '../config/config';
 import { UsersProvider } from '../users/users';
+import { Categories } from '../../models/categories';
 
 @Injectable()
 export class ProductsProvider {
@@ -20,6 +21,7 @@ export class ProductsProvider {
   }
 
   getCategories() {
+    this.formData = new FormData();
     this.URL = ConfigProvider.BASE_URL + 'product_module/api/categories_api';
     this.formData.append('language_id', '1');
     return this.http.post(this.URL,
@@ -30,7 +32,30 @@ export class ProductsProvider {
     );
   }
 
+  getAllCategories() {
+    this.formData = new FormData();
+    this.URL = ConfigProvider.BASE_URL + 'product_module/api/categories_api/categories';
+
+    this.formData.append('language_id', '1');
+    return this.http.post(this.URL,
+      this.formData,
+      {
+        headers: this.headers,
+      }
+    );
+  }
+
+  extractData(res: HttpResponse<Object>) {
+    let array = new Array();
+    let key, count = 0;
+    for (key in res.body) {
+      array.push(res.body[count++]);
+    }
+    return array;
+  }
+
   getList(data: any) {
+    this.formData = new FormData();
     this.URL = ConfigProvider.BASE_URL + 'product_module/api/products_api';
     this.formData.append('language_id', '1');
     this.formData.append('length', '100');
@@ -52,6 +77,8 @@ export class ProductsProvider {
     );
   }
 
+
+
   getDetail(id: any) {
     this.URL = ConfigProvider.BASE_URL + 'product_module/api/products_api/detail/' + id;
     return this.http.get(this.URL,
@@ -70,8 +97,8 @@ export class ProductsProvider {
     );
   }
 
-
   setWishlist(id) {
+    this.formData = new FormData();
     this.URL = ConfigProvider.BASE_URL + 'product_module/api/product_wishlists_api/save';
     this.formData.append('language_id', '1');
     this.formData.append('user_id', this.usersProvider.id);
@@ -85,6 +112,7 @@ export class ProductsProvider {
   }
 
   getWishlist() {
+    this.formData = new FormData();
     this.URL = ConfigProvider.BASE_URL + 'product_module/api/product_wishlists_api';
     this.formData.append('language_id', '1');
     this.formData.append('user_id', this.usersProvider.id);

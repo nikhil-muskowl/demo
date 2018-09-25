@@ -35,10 +35,11 @@ export class ProductCategoriesPage {
 
   public getCategories() {
     this.loadingProvider.present();
-    this.productsProvider.getCategories().subscribe(
+    this.productsProvider.getAllCategories().subscribe(
       response => {
         this.responseData = response;
         this.categories = this.responseData.data;
+        console.log(this.categories);
         this.loadingProvider.dismiss();
       },
       err => {
@@ -47,6 +48,14 @@ export class ProductCategoriesPage {
       }
     );
     return event;
+  }
+
+  toggleSection(i) {    
+    this.categories[i].open = !this.categories[i].open;
+  }
+
+  toggleItem(i, j) {   
+    this.categories[i].childrens[j].open = !this.categories[i].childrens[j].open;
   }
 
   public itemTapped(data: any) {

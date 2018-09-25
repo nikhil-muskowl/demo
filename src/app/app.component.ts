@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { UsersProvider } from '../providers/users/users';
+import { ProductsProvider } from '../providers/products/products';
 import { CurrentLocationProvider } from '../providers/current-location/current-location';
 
 import { HomePage } from '../pages/public_module/home/home';
@@ -32,10 +33,13 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  private pages: Array<{ title: string, component: any, open: any, children: any }>;
-  private children: Array<{ title: string, component: any, open: any, children: any }>;
+  private pages: any;
+  private children: any;
 
-  private responseData;
+  responseData: any;
+  categories: any;
+  childrens1: any;
+  childrens2: any;
 
   constructor(
     private app: App,
@@ -43,6 +47,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public usersProvider: UsersProvider,
+    public productsProvider: ProductsProvider,
     public currentLocationProvider: CurrentLocationProvider,
     public loadingProvider: LoadingProvider,
     private alertCtrl: AlertController,
@@ -90,17 +95,15 @@ export class MyApp {
       this.children.push({ title: 'Register', component: RegisterPage, open: false, children: [] });
     }
     this.pages.push({ title: 'My Account', component: AccountPage, open: false, children: this.children });
-
     this.children = [];
 
     this.pages.push({ title: 'Categories', component: ProductCategoriesPage, open: false, children: this.children });
+
     this.pages.push({ title: 'Products', component: ProductsPage, open: false, children: this.children });
     this.pages.push({ title: 'About', component: AboutPage, open: false, children: this.children });
     this.pages.push({ title: 'Contact', component: ContactPage, open: false, children: this.children });
     this.pages.push({ title: 'Stories', component: StoriesPage, open: false, children: this.children });
 
-
-    console.log(this.pages);
   }
 
   toggleSection(i) {
@@ -164,4 +167,6 @@ export class MyApp {
     this.alert.present();
   }
 
+
 }
+
