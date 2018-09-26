@@ -2,9 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, App, Alert } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { TranslateService } from '@ngx-translate/core';
 import { UsersProvider } from '../providers/users/users';
 import { ProductsProvider } from '../providers/products/products';
+import { LanguageProvider } from '../providers/language/language';
 import { CurrentLocationProvider } from '../providers/current-location/current-location';
 
 import { HomePage } from '../pages/public_module/home/home';
@@ -16,6 +17,7 @@ import { RegisterPage } from '../pages/user_module/register/register';
 import { LoginPage } from '../pages/user_module/login/login';
 import { NotificationsPage } from '../pages/notification_module/notifications/notifications';
 import { WishlistPage } from '../pages/user_module/wishlist/wishlist';
+import { SettingPage } from '../pages/user_module/setting/setting';
 
 import { StoriesPage } from '../pages/story_module/stories/stories';
 import { ProductsPage } from '../pages/product_module/products/products';
@@ -40,24 +42,34 @@ export class MyApp {
   categories: any;
   childrens1: any;
   childrens2: any;
-
+  private language;
   constructor(
     private app: App,
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public usersProvider: UsersProvider,
+    public languageProvider: LanguageProvider,
     public productsProvider: ProductsProvider,
     public currentLocationProvider: CurrentLocationProvider,
     public loadingProvider: LoadingProvider,
     private alertCtrl: AlertController,
+    public translate: TranslateService
   ) {
     this.initializeApp();
+
     this.backEvent();
+
+    this.language = this.languageProvider.getLanguage();
+    this.translate.setDefaultLang(this.language);
+    this.translate.use(this.language);
+
     this.usersProvider.fillData();
     this.currentLocationProvider.setLocation();
     this.bindMenu();
   }
+
+
 
   menuClosed() {
     this.usersProvider.fillData();
@@ -104,6 +116,7 @@ export class MyApp {
     this.pages.push({ title: 'Contact', component: ContactPage, open: false, children: this.children });
     this.pages.push({ title: 'Stories', component: StoriesPage, open: false, children: this.children });
 
+    this.pages.push({ title: 'Setting', component: SettingPage, open: false, children: [] });
   }
 
   toggleSection(i) {

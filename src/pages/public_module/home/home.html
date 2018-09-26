@@ -5,15 +5,16 @@
     </button>
     <ion-title>{{heading}}</ion-title>
     <ion-buttons end>
+
       
-      
-        <button ion-button icon-only (click)="openNotifications()">
-          <ion-icon name="notifications"></ion-icon>
-        </button>
-        <button ion-button icon-only>
-          <ion-icon name="cart"></ion-icon>
-        </button>
-    
+
+      <button ion-button icon-only (click)="openNotifications()">
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon name="cart"></ion-icon>
+      </button>
+
       <button ion-button icon-only (click)="regularShare()">
         <ion-icon name="share"></ion-icon>
       </button>
@@ -26,9 +27,10 @@
 </ion-header>
 
 <ion-content #pageContent fullscreen>
-
+  
   <banners></banners>
   <categories-slider></categories-slider>
+
   <div padding>
     <h3>Welcome to Lorem Ipsum</h3>
     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
@@ -45,6 +47,6 @@
 
   </div>
 
-  
+
 
 </ion-content>

@@ -2,6 +2,7 @@ import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConfigProvider } from '../config/config';
 import { UsersProvider } from '../users/users';
+import { LanguageProvider } from '../language/language';
 @Injectable()
 export class StoriesProvider {
 
@@ -10,7 +11,11 @@ export class StoriesProvider {
   public responseData: any;
   private URL;
 
-  constructor(public http: HttpClient, private usersProvider: UsersProvider) {
+  constructor(
+    public http: HttpClient,
+    private usersProvider: UsersProvider,
+    private languageProvider: LanguageProvider,
+  ) {
     this.headers.set('Access-Control-Allow-Origin ', '*');
     this.headers.set('Content-Type', 'application/json; charset=utf-8');
   }
@@ -18,7 +23,7 @@ export class StoriesProvider {
   getTypes() {
     this.formData = new FormData();
     this.URL = ConfigProvider.BASE_URL + 'story_module/api/story_types_api';
-    this.formData.append('language_id', '1');
+    this.formData.append('language_id', this.languageProvider.getLanguageId());
     return this.http.post(this.URL,
       this.formData,
       {
@@ -30,7 +35,7 @@ export class StoriesProvider {
   getList(data: any) {
     this.formData = new FormData();
     this.URL = ConfigProvider.BASE_URL + 'story_module/api/stories_api';
-    this.formData.append('language_id', '1');
+    this.formData.append('language_id', this.languageProvider.getLanguageId());
     if (data.story_type_id) {
       this.formData.append('story_type_id', data.story_type_id);
     }
@@ -75,7 +80,7 @@ export class StoriesProvider {
     this.formData.append('user_id', this.usersProvider.id);
     this.formData.append('story_id', data.story_id);
     this.formData.append('comment', data.comment);
-    this.formData.append('language_id', '1');
+    this.formData.append('language_id', this.languageProvider.getLanguageId());
 
     return this.http.post(this.URL,
       this.formData,

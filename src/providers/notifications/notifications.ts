@@ -2,6 +2,8 @@ import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConfigProvider } from '../config/config';
 import { UsersProvider } from '../users/users';
+import { LanguageProvider } from '../language/language';
+
 @Injectable()
 export class NotificationsProvider {
   public headers = new HttpHeaders();
@@ -10,7 +12,11 @@ export class NotificationsProvider {
   private URL;
 
 
-  constructor(public http: HttpClient, private usersProvider: UsersProvider) {
+  constructor(
+    public http: HttpClient, 
+    private usersProvider: UsersProvider,
+    private languageProvider: LanguageProvider,
+    ) {
     this.headers.set('Access-Control-Allow-Origin ', '*');
     this.headers.set('Content-Type', 'application/json; charset=utf-8');
   }
@@ -18,7 +24,7 @@ export class NotificationsProvider {
   list(data: any) {
     this.formData = new FormData();
     this.URL = ConfigProvider.BASE_URL + 'notifications_module/api/user_notifications_api';
-    this.formData.append('language_id', '1');
+    this.formData.append('language_id', this.languageProvider.getLanguageId());
     this.formData.append('user_id', this.usersProvider.id);
 
     return this.http.post(this.URL,

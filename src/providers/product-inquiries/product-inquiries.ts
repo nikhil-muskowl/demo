@@ -1,6 +1,9 @@
 import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConfigProvider } from '../config/config';
+import { LanguageProvider } from '../language/language';
+
+
 @Injectable()
 export class ProductInquiriesProvider {
 
@@ -9,14 +12,17 @@ export class ProductInquiriesProvider {
   public responseData: any;
   private URL;
 
-  constructor(public http: HttpClient) {
+  constructor(
+    public http: HttpClient,
+    private languageProvider: LanguageProvider,
+  ) {
     this.headers.set('Access-Control-Allow-Origin ', '*');
     this.headers.set('Content-Type', 'application/json; charset=utf-8');
   }
 
   public getTypes() {
     this.URL = ConfigProvider.BASE_URL + 'product_inquiry_module/api/product_inquiry_types_api';
-    this.formData.append('language_id', '1');
+    this.formData.append('language_id', this.languageProvider.getLanguageId());
     return this.http.post(this.URL,
       this.formData,
       {

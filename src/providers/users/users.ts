@@ -153,6 +153,8 @@ export class UsersProvider {
     );
   }
 
+  
+
   public setData(data) {
     this.id = data.id;
     this.fillData();
@@ -181,7 +183,6 @@ export class UsersProvider {
     } catch (error) {
       return 0;
     }
-
   }
 
 }

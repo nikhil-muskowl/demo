@@ -3,10 +3,18 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicSwipeAllModule } from 'ionic-swipe-all';
 import { Geolocation } from '@ionic-native/geolocation';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+// AoT requires an exported function for factories
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 // public_module
 import { HomePage } from '../pages/public_module/home/home';
 import { AboutPage } from '../pages/public_module/about/about';
@@ -41,6 +49,7 @@ import { LoginPage } from '../pages/user_module/login/login';
 import { UpdatePasswordPage } from '../pages/user_module/update-password/update-password';
 import { UpdateProfilePage } from '../pages/user_module/update-profile/update-profile';
 import { WishlistPage } from '../pages/user_module/wishlist/wishlist';
+import { SettingPage } from '../pages/user_module/setting/setting';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -61,6 +70,7 @@ import { StoriesProvider } from '../providers/stories/stories';
 import { CurrentLocationProvider } from '../providers/current-location/current-location';
 import { ProductInquiriesProvider } from '../providers/product-inquiries/product-inquiries';
 import { NotificationsProvider } from '../providers/notifications/notifications';
+import { LanguageProvider } from '../providers/language/language';
 
 @NgModule({
   declarations: [
@@ -97,6 +107,7 @@ import { NotificationsProvider } from '../providers/notifications/notifications'
     UpdatePasswordPage,
     UpdateProfilePage,
     WishlistPage,
+    SettingPage,
     // user_module
 
     ScrollHideDirective,
@@ -112,10 +123,20 @@ import { NotificationsProvider } from '../providers/notifications/notifications'
     HttpClientModule,
     IonicSwipeAllModule,
     IonicModule.forRoot(MyApp),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
     })
+  ],
+  exports:[
+    TranslateModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -151,7 +172,9 @@ import { NotificationsProvider } from '../providers/notifications/notifications'
     UpdatePasswordPage,
     UpdateProfilePage,
     WishlistPage,
+    SettingPage,
     // user_module
+
 
     //components
     AccountDetailComponent,
@@ -176,7 +199,8 @@ import { NotificationsProvider } from '../providers/notifications/notifications'
     StoriesProvider,
     CurrentLocationProvider,
     ProductInquiriesProvider,
-    NotificationsProvider
+    NotificationsProvider,
+    LanguageProvider
   ]
 })
 export class AppModule { }
