@@ -13,6 +13,9 @@ export class LanguageProvider {
   public language_id;
 
   constructor(public http: HttpClient) {
+    this.language = 'english';
+    this.language_id = 1;
+    
     this.language = this.getLanguage();
     this.language_id = this.getLanguageId();
   }
@@ -41,6 +44,13 @@ export class LanguageProvider {
       return window.localStorage.getItem('language');
     } catch (error) {
       return 'english';
+    }
+  }
+
+  public setLanguageId(data) {
+    try {
+      window.localStorage.setItem('language_id', data.id);      
+    } catch (error) {
     }
   }
 

@@ -60,6 +60,8 @@ export class MyApp {
 
     this.backEvent();
 
+    this.languageProvider.setLanguage({ code: 'english', id: 1 });
+
     this.language = this.languageProvider.getLanguage();
     this.translate.setDefaultLang(this.language);
     this.translate.use(this.language);
