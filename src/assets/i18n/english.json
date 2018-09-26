@@ -2,5 +2,12 @@
     "home": "Home",
     "about": "About",
     "contact": "Contact",
-    "welcome": "Welcome to shop"
+    "welcome": "Welcome to shop",
+    "product": "Product",
+    "products": "Products",
+    "product_inquiry": "Product inquiry",
+    "category": "Category",
+    "categories": "Categories",
+    "notification": "Notification",
+    "notifications": "Notifications"
 }

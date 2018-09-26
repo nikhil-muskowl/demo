@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
+import { LanguageProvider } from '../../../providers/language/language';
 
 import { ScrollHideConfig } from '../../../directives/scroll-hide/scroll-hide';
 import { SocialSharingProvider } from '../../../providers/social-sharing/social-sharing';
 import { SearchProductsPage } from '../../product_module/search-products/search-products';
 import { NotificationsPage } from '../../notification_module/notifications/notifications';
 import { UsersProvider } from '../../../providers/users/users';
-import { LanguageProvider } from '../../../providers/language/language';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -22,7 +23,6 @@ export class HomePage {
   private image = 'https://lh3.googleusercontent.com/TX5dGtgyZOgySVrzfauged8rVmI7j2fbqthp8dMCidZi4OPQJlnMAFt_UZ3QrRx41qI=s180-rw';
   private url = 'https://play.google.com/store/apps/details?id=com.ppl';
 
-  private language;
 
   constructor(
     private socialSharing: SocialSharingProvider,
@@ -32,9 +32,8 @@ export class HomePage {
     public translate: TranslateService
   ) {
 
-    this.language = this.languageProvider.getLanguage();
-    this.translate.setDefaultLang(this.language);
-    this.translate.use(this.language);
+    this.translate.setDefaultLang(this.languageProvider.getLanguage());
+    this.translate.use(this.languageProvider.getLanguage());
     this.translate.get('home').subscribe((text: string) => {
       this.heading = text;
     });

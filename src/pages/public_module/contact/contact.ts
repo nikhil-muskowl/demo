@@ -1,5 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageProvider } from '../../../providers/language/language';
+
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ScrollHideConfig } from '../../../directives/scroll-hide/scroll-hide';
 import { FormServiceProvider } from '../../../providers/form-service/form-service';
@@ -52,7 +55,15 @@ export class ContactPage {
     private inquiriesProvider: InquiriesProvider,
     private currentLocationProvider: CurrentLocationProvider,
     public platform: Platform,
+    public languageProvider: LanguageProvider,
+    public translate: TranslateService
   ) {   
+    this.translate.setDefaultLang(this.languageProvider.getLanguage());
+    this.translate.use(this.languageProvider.getLanguage());
+    this.translate.get('contact').subscribe((text: string) => {
+      this.heading = text;
+    });
+
     this.getTypes();    
     this.fillData();
     this.createForm();
