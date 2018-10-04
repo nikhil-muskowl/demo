@@ -150,7 +150,7 @@ export class ContactPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+    
   }
 
   public createForm() {

@@ -34,8 +34,7 @@ export class ProductAttributesComponent {
         console.error(err);
         this.loadingProvider.dismiss();
       }
-    );
-    return event;
+    );    
   }
 
 }

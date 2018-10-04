@@ -62,7 +62,7 @@ export class ProductPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+   
   }
 
   /**
@@ -124,7 +124,7 @@ export class ProductPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+   
   }
 
   /**

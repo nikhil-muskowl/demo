@@ -100,7 +100,7 @@ export class StoryPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+    
   }
 
 

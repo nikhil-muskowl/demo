@@ -50,7 +50,7 @@ export class NotificationsPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+   
   }
 
 

@@ -37,13 +37,10 @@ export class CategoriesSliderComponent {
           this.loadingProvider.dismiss();
         },
         err => {
-          console.error(err);          
+          console.error(err);
           this.loadingProvider.dismiss();
         }
-      )
-      
-      ;
-    return event;
+      );
   }
 
   public goToProducts(data) {

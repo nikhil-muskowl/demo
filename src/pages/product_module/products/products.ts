@@ -58,7 +58,7 @@ export class ProductsPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+   
   }
 
   public getCategories() {
@@ -74,7 +74,7 @@ export class ProductsPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+   
   }
 
   public itemTapped(data: any) {

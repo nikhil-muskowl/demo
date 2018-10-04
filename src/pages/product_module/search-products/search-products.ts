@@ -64,8 +64,7 @@ export class SearchProductsPage {
         console.error(err);
         this.loadingProvider.dismiss();
       }
-    );
-    return event;
+    );   
   }
 
   public getCategories() {
@@ -80,8 +79,7 @@ export class SearchProductsPage {
         console.error(err);
         this.loadingProvider.dismiss();
       }
-    );
-    return event;
+    );   
   }
 
   public itemTapped(data: any) {

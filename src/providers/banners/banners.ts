@@ -15,7 +15,7 @@ export class BannersProvider {
     public http: HttpClient,
     private languageProvider: LanguageProvider,
   ) {
-    this.headers.set('Access-Control-Allow-Origin ', '*');
+    this.headers.set('Access-Control-Allow-Origin', '*');
     this.headers.set('Content-Type', 'application/json; charset=utf-8');
   }
 

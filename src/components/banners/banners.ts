@@ -35,7 +35,7 @@ export class BannersComponent {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+   
   }
 
 }

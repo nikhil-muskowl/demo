@@ -49,7 +49,7 @@ export class WishlistPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+    
   }
 
 

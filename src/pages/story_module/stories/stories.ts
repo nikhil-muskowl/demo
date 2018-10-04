@@ -56,7 +56,7 @@ export class StoriesPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+   
   }
 
   public getTypes() {
@@ -72,7 +72,7 @@ export class StoriesPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+    
   }
 
   public itemTapped(data: any) {

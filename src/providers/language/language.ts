@@ -56,7 +56,11 @@ export class LanguageProvider {
 
   public getLanguageId() {
     try {
-      return window.localStorage.getItem('language_id');
+      if(window.localStorage.getItem('language_id')){
+        return window.localStorage.getItem('language_id');
+      }else{
+        return '1';
+      }      
     } catch (error) {
       return '1';
     }

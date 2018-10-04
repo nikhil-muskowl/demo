@@ -47,7 +47,7 @@ export class ProductCategoriesPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+   
   }
 
   toggleSection(i) {    

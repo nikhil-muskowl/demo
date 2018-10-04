@@ -71,7 +71,7 @@ export class ProductInquiriesPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+    
   }
 
   public fillData() {
@@ -110,7 +110,7 @@ export class ProductInquiriesPage {
         this.loadingProvider.dismiss();
       }
     );
-    return event;
+    
   }
 
   public createForm() {
