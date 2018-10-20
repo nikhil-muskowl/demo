@@ -3,8 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { Facebook } from '@ionic-native/facebook';
-
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicSwipeAllModule } from 'ionic-swipe-all';
@@ -188,8 +186,7 @@ import { LanguageProvider } from '../providers/language/language';
     StatusBar,
     SplashScreen,
     SocialSharing,
-    Geolocation,
-    Facebook,
+    Geolocation,    
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConfigProvider,
     BannersProvider,

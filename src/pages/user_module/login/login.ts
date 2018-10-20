@@ -8,7 +8,7 @@ import { FormServiceProvider } from '../../../providers/form-service/form-servic
 import { UsersProvider } from '../../../providers/users/users';
 import { LoadingProvider } from '../../../providers/loading/loading';
 import { AlertController } from 'ionic-angular';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -42,18 +42,14 @@ export class LoginPage {
     private usersProvider: UsersProvider,
     private loadingProvider: LoadingProvider,
     private alertCtrl: AlertController,
-    private fb: Facebook
+    
   ) {
 
 
     this.username = '';
     this.password = '';
 
-    this.createForm();
-
-    this.fb.login(['public_profile', 'user_friends', 'email'])
-      .then((res: FacebookLoginResponse) => console.log('Logged into Facebook!', res))
-      .catch(e => console.log('Error logging into Facebook', e));    
+    this.createForm();   
   }
 
   public createForm() {
