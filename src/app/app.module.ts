@@ -187,6 +187,7 @@ import { LanguageProvider } from '../providers/language/language';
     SplashScreen,
     SocialSharing,
     Geolocation,    
+  
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConfigProvider,
     BannersProvider,

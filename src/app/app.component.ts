@@ -43,6 +43,7 @@ export class MyApp {
   childrens1: any;
   childrens2: any;
   private language;
+
   constructor(
     private app: App,
     public platform: Platform,
@@ -54,7 +55,7 @@ export class MyApp {
     public currentLocationProvider: CurrentLocationProvider,
     public loadingProvider: LoadingProvider,
     private alertCtrl: AlertController,
-    public translate: TranslateService
+    public translate: TranslateService,   
   ) {
     this.initializeApp();
 
@@ -69,6 +70,8 @@ export class MyApp {
     this.usersProvider.fillData();
     this.currentLocationProvider.setLocation();
     this.bindMenu();
+
+    
   }
 
 
